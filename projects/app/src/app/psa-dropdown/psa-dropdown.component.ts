@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { PsaSet, PsaSetData } from '../psa-set';
 import {FormGroup, FormControl} from '@angular/forms';
 
-
 @Component({
   selector: 'app-psa-dropdown',
   templateUrl: './psa-dropdown.component.html',
@@ -47,11 +46,11 @@ export class PsaDropdownComponent implements OnInit {
 
   constructor(private http: HttpClient) {
           //get request from web api
-          this.http.get('http://localhost/sets').subscribe(data => {
-
-            this.listOfContacts = data;
-            this.originalList = data;
-            this.psaSets = data;
+          this.http.get('https://u995finzx1.execute-api.ca-central-1.amazonaws.com/dev/sets').subscribe(data => {
+            let jsonData = JSON.parse(data.toString()); 
+            this.listOfContacts = jsonData;
+            this.originalList = jsonData;
+            this.psaSets = jsonData;
 
             console.log("psaSets:loaded", this.psaSets);
       }, error => console.error(error));
@@ -74,7 +73,9 @@ export class PsaDropdownComponent implements OnInit {
         "Date1GradeTotal",
         "Date2GradeTotal",
         "DeltaGradeTotal"
-      ]
+      ];
+
+
   }
 
   changeSet(event:any) {
@@ -104,11 +105,11 @@ export class PsaDropdownComponent implements OnInit {
 
     let tableData1: any, tableData2: any;
 
-    this.http.post('http://localhost/test', dataSet1).subscribe(data => {
+    this.http.post('https://u995finzx1.execute-api.ca-central-1.amazonaws.com/dev/getSetData', dataSet1).subscribe(data => {
       debugger;
-      tableData1 = data;
-      this.http.post('http://localhost/test', dataSet2).subscribe(data => {
-        tableData2 = data;
+      tableData1 = JSON.parse(data.toString());
+      this.http.post('https://u995finzx1.execute-api.ca-central-1.amazonaws.com/dev/getSetData', dataSet2).subscribe(data => {
+        tableData2 = JSON.parse(data.toString());
         let combinedTableData = [];
         debugger;
         
