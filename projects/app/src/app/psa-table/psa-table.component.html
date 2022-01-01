@@ -1,0 +1,33 @@
+<div class="container text-center mt-4">
+    <input class="form-control mt-2 mb-2" type="text" [(ngModel)]="searchText"  (input)="Search()" placeholder="Search by name" /> 
+    <table class="table table-striped table-bordered table-sm row-border hover" id="datatableexample">
+      <thead>
+        <tr>
+            <th *ngFor="let column of columns" (click)="Sort(column, false)">{{column}}</th>
+          <!-- <th (click)="Sort('id', true)">ID</th>
+          <th (click)="Sort('name', false)">Name</th>
+          <th (click)="Sort('email', false)">Email</th>
+          <th (click)="Sort('job_title', false)">Job Title</th> -->
+          </tr>
+      </thead>
+      <tbody>
+              <tr *ngFor="let setData of listOfContacts">
+                  <td>{{setData.SubjectName}}</td>
+                  <td>{{setData.Variety}}</td>
+                  <td>{{setData.CardNumber}}</td>
+                  <td>{{setData.Date1PSA8}}</td>
+                  <td>{{setData.Date2PSA8}}</td>
+                  <td style="color:green;font-weight: bold;">{{setData.DeltaPSA8}}</td>
+                  <td>{{setData.Date1PSA9}}</td>
+                  <td>{{setData.Date2PSA9}}</td>
+                  <td style="color:green;font-weight: bold;">{{setData.DeltaPSA9}}</td>
+                  <td>{{setData.Date1PSA10}}</td>
+                  <td>{{setData.Date2PSA10}}</td>
+                  <td style="color:green;font-weight: bold;">{{setData.DeltaPSA10}}</td>
+                  <td>{{setData.Date1GradeTotal}}</td>
+                  <td>{{setData.Date2GradeTotal}}</td>
+                  <td style="color:green;font-weight: bold;">{{setData.DeltaGradeTotal}}</td>
+              </tr>
+      </tbody>
+    </table>
+    </div>
